@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   api:
-    build: .
+    build: ./nonexistent-context
     container_name: fastapi-example
     ports:
       - "8000:8000"
