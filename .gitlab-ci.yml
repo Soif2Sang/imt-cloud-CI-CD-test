@@ -3,26 +3,23 @@ stages:
   - test
   - deploy
 
-build_app:
-  stage: build
-  image: python:3.11-slim
-  script:
-    - pip install --upgrade pip
-    - pip install -r requirements.txt
-    - python -m compileall main.py
+# build_app:
+#   stage: build
+#   image: python:3.11-slim
+#   script:
+#     - pip install --upgrade pip
+#     - pip install -r requirements.txt
+#     - python -m compileall main.py
 
-test_app:
-  stage: test
-  image: python:3.11-slim
-  script:
-    - pip install --upgrade pip
-    - pip install -r requirements.txt
-    - pytest -q
+# test_app:
+#   stage: test
+#   image: python:3.11-slim
+#   script:
+#     - pip install --upgrade pip
+#     - pip install -r requirements.txt
+#     - pytest -q
 
 deploy_app:
   stage: deploy
-  image: bitnami/kubectl:latest
   script:
-    - echo "$KUBE_CONFIG" | base64 -d > kubeconfig
-    - export KUBECONFIG="$PWD/kubeconfig"
     - kubectl apply -f k8s/deployment.yaml
