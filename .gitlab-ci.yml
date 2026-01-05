@@ -1,0 +1,26 @@
+stages:
+  - build
+  - test
+  - deploy
+
+build_app:
+  stage: build
+  image: python:3.11-slim
+  script:
+    - pip install --upgrade pip
+    - pip install -r requirements.txt
+    - python -m compileall main.py
+
+test_app:
+  stage: test
+  image: python:3.11-slim
+  script:
+    - pip install --upgrade pip
+    - pip install -r requirements.txt
+    - pytest -q
+
+deploy_app:
+  stage: deploy
+  image: bitnami/kubectl:1.28
+  script:
+    - kubectl apply -f k8s/deployment.yaml
