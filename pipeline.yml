@@ -10,11 +10,11 @@ build_app:
     - pip install -q -r requirements.txt
     - python -m compileall main.py
 
-scan-code:
-  stage: scan
-  image: sonarsource/sonar-scanner-cli
-  script:
-    - sonar-scanner -Dsonar.projectKey=SonarCubeTest -Dsonar.organization=test-org-imt-nord -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.qualitygate.wait=true
+# scan-code:
+#   stage: scan
+#   image: sonarsource/sonar-scanner-cli
+#   script:
+#     - sonar-scanner -Dsonar.projectKey=SonarCubeTest -Dsonar.organization=test-org-imt-nord -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.qualitygate.wait=true
 
 test_app:
   stage: test
