@@ -14,10 +14,7 @@ scan-code:
   stage: scan
   image: sonarsource/sonar-scanner-cli
   script:
-    - sonar-scanner -Dsonar.projectKey=SonarCubeTest \
-      -Dsonar.organization=test-org-imt-nord \
-      -Dsonar.host.url=$SONAR_HOST_URL \
-      -Dsonar.qualitygate.wait=true
+    - sonar-scanner -Dsonar.projectKey=SonarCubeTest -Dsonar.organization=test-org-imt-nord -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.qualitygate.wait=true
 
 test_app:
   stage: test
