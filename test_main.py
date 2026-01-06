@@ -79,7 +79,7 @@ class TestGetItem:
         data = response.json()
         assert data["id"] == 1
         assert data["name"] == "Laptop"
-        assert data["price"] == 999.99
+        assert data["price"] == pytest.approx(999.99)
     
     def test_get_non_existing_item(self):
         """Test pour récupérer un item qui n'existe pas"""
@@ -104,7 +104,7 @@ class TestCreateItem:
         data = response.json()
         assert data["id"] == 4
         assert data["name"] == "Monitor"
-        assert data["price"] == 399.99
+        assert data["price"] == pytest.approx(399.99)
     
     def test_create_item_minimal(self):
         """Test de création d'un item avec données minimales"""
@@ -144,7 +144,7 @@ class TestUpdateItem:
         data = response.json()
         assert data["id"] == 1
         assert data["name"] == "Gaming Laptop"
-        assert data["price"] == 1499.99
+        assert data["price"] == pytest.approx(1499.99)
     
     def test_update_non_existing_item(self):
         """Test de mise à jour d'un item qui n'existe pas"""
@@ -207,7 +207,7 @@ class TestIntegration:
         }
         update_response = client.put(f"/items/{item_id}", json=update_data)
         assert update_response.status_code == 200
-        assert update_response.json()["price"] == 299.99
+        assert update_response.json()["price"] == pytest.approx(299.99)
         
         # 4. Supprimer l'item
         delete_response = client.delete(f"/items/{item_id}")

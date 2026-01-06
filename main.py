@@ -28,6 +28,8 @@ items_db: List[Item] = [
     Item(id=3, name="Keyboard", description="Un clavier mécanique", price=149.99, in_stock=False),
 ]
 
+ITEM_NOT_FOUND_MESSAGE = "Item non trouvé"
+
 @app.get("/", tags=["Root"])
 async def root():
     """Endpoint racine"""
@@ -55,7 +57,7 @@ async def get_item(item_id: int):
     for item in items_db:
         if item.id == item_id:
             return item
-    raise HTTPException(status_code=404, detail="Item non trouvé")
+    raise HTTPException(status_code=404, detail=ITEM_NOT_FOUND_MESSAGE)
 
 @app.post("/items", response_model=Item, status_code=201, tags=["Items"])
 async def create_item(item: Item):
@@ -74,7 +76,7 @@ async def update_item(item_id: int, updated_item: Item):
             updated_item.id = item_id
             items_db[idx] = updated_item
             return updated_item
-    raise HTTPException(status_code=404, detail="Item non trouvé")
+    raise HTTPException(status_code=404, detail=ITEM_NOT_FOUND_MESSAGE)
 
 @app.delete("/items/{item_id}", tags=["Items"])
 async def delete_item(item_id: int):
@@ -83,7 +85,7 @@ async def delete_item(item_id: int):
         if item.id == item_id:
             items_db.pop(idx)
             return {"message": f"Item {item_id} supprimé avec succès"}
-    raise HTTPException(status_code=404, detail="Item non trouvé")
+    raise HTTPException(status_code=404, detail=ITEM_NOT_FOUND_MESSAGE)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
