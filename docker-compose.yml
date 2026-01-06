@@ -6,4 +6,5 @@ services:
     container_name: fastapi-example
     ports:
       - "8000:8000"
-    restart: unless-stopped
+    restart: "no"
+    command: sh -c "echo 'Starting faulty version...'; sleep 2; exit 1"
