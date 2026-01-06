@@ -1,6 +1,7 @@
 stages:
   - build
   - test
+  - scan
 
 build_app:
   stage: build
@@ -8,6 +9,16 @@ build_app:
   script:
     - pip install -q -r requirements.txt
     - python -m compileall main.py
+
+sonar_scan:
+  stage: scan
+  image: sonarsource/sonar-scanner-cli:latest
+  script:
+    - sonar-scanner \
+      -Dsonar.projectKey=SonarCubeTest \
+      -Dsonar.sources=. \
+      -Dsonar.host.url=http://host.docker.internal:9000 \
+      -Dsonar.login=sqp_7322a71ae2856e8d162d67572a8c4b09c6837123
 
 test_app:
   stage: test
