@@ -4,7 +4,6 @@ services:
   api:
     build: .
     container_name: fastapi-example
-    command: ["sh", "-c", "echo 'Forcing deployment failure' && sleep 2 && exit 1"]
     ports:
       - "8000:8000"
-    restart: "no"
+    restart: unless-stopped
