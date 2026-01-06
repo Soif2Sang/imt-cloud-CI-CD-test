@@ -14,7 +14,7 @@ scan-code:
   stage: scan
   image: sonarsource/sonar-scanner-cli
   script:
-    - sonar -scannerDsonar.organization=test-org-imt-nord -Dsonar.projectKey=test-org-imt-nord_test-project -Dsonar.sources=.
+    - sonar-scanner -Dsonar.organization=test-org-imt-nord -Dsonar.sources=.
 
 test_app:
   stage: test
