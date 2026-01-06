@@ -16,16 +16,7 @@ sonar_scan:
   script:
     - export SONAR_TOKEN=sqp_8c07d54bd7e8b6ce1164d4f1274602e809440b44
     - export SONAR_HOST_URL=http://host.docker.internal:9000
-    - |
-      if [ -z "$SONAR_HOST_URL" ] || [ -z "$SONAR_TOKEN" ]; then
-        echo "Skipping SonarQube scan: SONAR_HOST_URL or SONAR_TOKEN is not set."
-        exit 0
-      fi
-      if ! curl -sf "$SONAR_HOST_URL/api/system/health" > /dev/null; then
-        echo "Skipping SonarQube scan: unable to reach $SONAR_HOST_URL."
-        exit 0
-      fi
-    - sonar-scanner -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN
+    - sonar-scanner -Dsonar.projectKey=SonarCubeTest -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN
 
 test_app:
   stage: test
