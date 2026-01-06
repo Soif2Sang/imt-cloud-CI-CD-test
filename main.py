@@ -32,7 +32,7 @@ items_db: List[Item] = [
 async def root():
     """Endpoint racine"""
     return {
-        "message": "Bienvenue sur l'API d'exemple! v5.3",
+        "message": "Bienvenue sur l'API d'exemple! v5.4",
         "docs": "/docs",
         "health": "/health"
     }
