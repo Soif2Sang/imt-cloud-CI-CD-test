@@ -34,7 +34,7 @@ ITEM_NOT_FOUND_MESSAGE = "Item non trouvé"
 async def root():
     """Endpoint racine"""
     return {
-        "message": "Bienvenue sur l'API d'exemple! v5.12",
+        "message": "Bienvenue sur l'API d'exemple! v5.13",
         "docs": "/docs",
         "health": "/health"
     }
