@@ -16,6 +16,14 @@ scan-code:
   script:
     - sonar-scanner -Dsonar.projectKey=$PROJECT_KEY -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.qualitygate.wait=true
 
+sast:
+  stage: pentest
+  image: python:3.11-slim
+  script:
+    - pip install bandit
+    - bandit -r . -f json -o bandit-report.json || true
+    - cat bandit-report.json
+
 test_app:
   stage: test
   image: python:3.11-slim
