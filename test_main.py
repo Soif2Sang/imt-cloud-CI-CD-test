@@ -24,7 +24,7 @@ class TestRoot:
         response = client.get("/")
         assert response.status_code == 200
         assert "text/html" in response.headers["content-type"]
-        assert "background-color: red;" in response.text
+        assert "background-color: blue;" in response.text
         assert "<h1>Bienvenue sur l'API d'exemple!</h1>" in response.text
 
 
