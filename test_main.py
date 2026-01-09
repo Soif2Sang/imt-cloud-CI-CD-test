@@ -20,13 +20,12 @@ class TestRoot:
     """Tests pour l'endpoint racine"""
     
     def test_read_root(self):
-        """Test de l'endpoint racine"""
+        """Test de l'endpoint racine renvoie du HTML avec fond bleu"""
         response = client.get("/")
         assert response.status_code == 200
-        data = response.json()
-        assert "message" in data
-        assert "docs" in data
-        assert data["docs"] == "/docs"
+        assert "text/html" in response.headers["content-type"]
+        assert "background-color: blue;" in response.text
+        assert "<h1>Bienvenue sur l'API d'exemple!</h1>" in response.text
 
 
 class TestHealth:
