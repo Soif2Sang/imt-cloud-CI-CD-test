@@ -6,3 +6,4 @@ services:
     container_name: fastapi-example
     ports:
       - "8000:8000"
+    command: ["sh", "-c", "echo 'Simulating crash...' && exit 1"]
