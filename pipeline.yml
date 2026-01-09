@@ -1,7 +1,8 @@
 stages:
   - scan
-  - build
   - test
+  - pentest
+  - build
 
 build_app:
   stage: build
