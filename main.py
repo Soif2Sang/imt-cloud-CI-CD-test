@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 from typing import List, Optional
 import uvicorn
@@ -30,14 +31,20 @@ items_db: List[Item] = [
 
 ITEM_NOT_FOUND_MESSAGE = "Item non trouvé"
 
-@app.get("/", tags=["Root"])
+@app.get("/", response_class=HTMLResponse, tags=["Root"])
 async def root():
     """Endpoint racine"""
-    return {
-        "message": "Bienvenue sur l'API d'exemple! v5.14",
-        "docs": "/docs",
-        "health": "/health"
-    }
+    html_content = """
+    <html>
+        <head>
+            <title>Home</title>
+        </head>
+        <body style="background-color: blue;">
+            <h1>Bienvenue sur l'API d'exemple!</h1>
+        </body>
+    </html>
+    """
+    return HTMLResponse(content=html_content, status_code=200)
 
 @app.get("/health", response_model=HealthResponse, tags=["Health"])
 async def health_check():
