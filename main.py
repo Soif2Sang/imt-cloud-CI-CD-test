@@ -39,7 +39,7 @@ async def root():
         <head>
             <title>Home</title>
         </head>
-        <body style="background-color: red;">
+        <body style="background-color: blue;">
             <h1>Bienvenue sur l'API d'exemple!</h1>
         </body>
     </html>
