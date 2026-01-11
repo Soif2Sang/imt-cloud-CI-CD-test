@@ -1,0 +1,1 @@
+This GitHub repository is a testbed for my project [Dock-N-Deploy](https://github.com/Soif2Sang/Dock-N-Deploy). The goal is to create a custom pipeline (based on GitLab CI syntax) and a runner, and then deploy the application.
